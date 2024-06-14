@@ -1,0 +1,36 @@
+/*!
+ =========================================================
+ * Light Bootstrap Dashboard Vue - v1.0.0 (Bootstrap 4)
+ =========================================================
+ * Product Page: http://www.creative-tim.com/product/light-bootstrap-dashboard
+ * Copyright 2017 Creative Tim (http://www.creative-tim.com)
+ * Licensed under MIT (https://github.com/creativetimofficial/light-bootstrap-dashboard/blob/master/LICENSE.md)
+ =========================================================
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ */
+@import "lib/variables";
+@import "lib/mixins";
+
+@import "lib/typography";
+
+// Core CSS
+@import "lib/misc";
+@import "lib/sidebar-and-main-panel";
+@import "lib/buttons";
+@import "lib/inputs";
+
+@import "lib/alerts";
+@import "lib/tables";
+@import "lib/modal";
+
+@import "lib/checkbox-radio-switch";
+@import "lib/navbars";
+@import "lib/footers";
+
+// Fancy Stuff
+@import "lib/plugins/animate";
+@import "lib/dropdown";
+@import "lib/cards";
+@import "lib/chartist";
+@import "lib/tooltip";
+@import "lib/responsive";
