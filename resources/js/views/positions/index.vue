@@ -2,7 +2,7 @@
   <div class="p-3 px-4 mt-3">
     <div class="card border-0 shadow">
       <div class="card-header d-flex align-items-center justify-content-between">
-        <h4 class="card-title">List Posisi di Adma Digital Solusi</h4>
+        <h4 class="card-title">List Posisi</h4>
         <b-button class="btn-fill btn-success px-4" @click="dialogVisible = true">Tambah</b-button>
       </div>
       <div class="card-body">
