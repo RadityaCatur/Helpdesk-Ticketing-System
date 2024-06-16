@@ -54,7 +54,7 @@
                 <button class="btn-fill btn-info btn-sm" @click="handleDetail(row)">Rincian</button>
                 <button class="btn-fill btn-warning btn-sm" @click="handleEdit(row)">Ubah</button>
                 <button class="btn-fill btn-danger btn-sm" @click="handleDestroy(row)">Hapus</button>
-                <button class="btn-fill btn-secondary btn-sm" @click="handleEditPermission(row);">Hak akses</button>
+                <button class="btn-fill btn-secondary btn-sm" @click="handleEditPermission(row);">Pengaturan</button>
               </template>
               <template #table-busy>
                 <div class="text-center text-primary my-2">
