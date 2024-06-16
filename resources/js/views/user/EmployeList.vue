@@ -59,7 +59,6 @@
                 <span class="sr-only">Loading...</span>
                 Hapus
               </button>
-              <button class="btn-fill btn-secondary btn-sm" @click="handleEditPermission(row);">Hak akses</button>
             </template>
             <template #table-busy>
               <div class="text-center text-primary my-2">
