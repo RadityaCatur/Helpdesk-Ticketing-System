@@ -45,10 +45,10 @@
             <router-link v-if="isRole('admin', 'employee')" to="/dashboard/users" class="nav-link">
               <font color="white">Pengguna</font>
             </router-link>
-
+<!-- 
             <router-link to="/dashboard/roles-permissions" class="nav-link">
               <font color="white">Hak Akses</font>
-            </router-link>
+            </router-link> -->
           </b-collapse>
         </ul>
       </li>
