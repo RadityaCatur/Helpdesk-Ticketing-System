@@ -47,13 +47,13 @@
             <button class="btn-fill btn-info btn-sm" @click="handleDetail(row)">
               Rincian
             </button>
-            <!-- <button class="btn-fill btn-warning btn-sm" @click="openChatRoom(row)">
-              {{ row.detailsShowing ? 'Hide' : 'Show' }} Chat
-            </button> -->
-            <button v-if="isRole('admin', 'employee')" class="btn-fill btn-warning btn-sm" @click="handleEdit(row)">
+            <button v-if="isRole('admin')" class="btn-fill btn-warning btn-sm" @click="handleEdit(row)">
               Ubah
             </button>
-            <button class="btn-fill btn-danger btn-sm" @click="handleDestroy(row)">
+            <button v-if="isRole('employee')" class="btn-fill btn-warning btn-sm" @click="handleEdit(row)">
+              Ubah
+            </button>
+            <button v-if="isRole('admin')" class="btn-fill btn-danger btn-sm" @click="handleDestroy(row)">
               Hapus
             </button>
           </template>
