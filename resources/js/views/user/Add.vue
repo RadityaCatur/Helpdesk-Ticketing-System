@@ -184,6 +184,37 @@ export default {
 
   methods: {
     checkPermission,
+
+    setFullname(value) {
+      this.newUser.fullname = value;
+      this.$v.newUser.fullname.$touch();
+    },
+
+    setUsername(value) {
+      this.newUser.username = value;
+      this.$v.newUser.username.$touch();
+    },
+
+    setEmail(value) {
+      this.newUser.email = value;
+      this.$v.newUser.email.$touch();
+    },
+
+    setAlamat(value) {
+      this.newUser.alamat = value;
+      this.$v.newUser.alamat.$touch();
+    },
+
+    setHandphone(value) {
+      this.newUser.handphone = value;
+      this.$v.newUser.handphone.$touch();
+    },
+
+    setPassword(value) {
+      this.newUser.password = value;
+      this.$v.newUser.password.$touch();
+    },
+
     async getPermissions() {
       await axios.get('/permissions')
         .then((response) => {
