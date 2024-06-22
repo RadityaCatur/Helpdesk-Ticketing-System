@@ -56,6 +56,9 @@
             <button v-if="isRole('admin')" class="btn-fill btn-danger btn-sm" @click="handleDestroy(row)">
               Hapus
             </button>
+            <button v-if="isRole('pic')" class="btn-fill btn-danger btn-sm" @click="handleDestroy(row)">
+              Hapus
+            </button>
           </template>
           <!-- Chat View -->
           <template #row-details="row">                      
