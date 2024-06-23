@@ -25,7 +25,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
-{    
+{
     const ITEM_PER_PAGE = 15;
 
     /**
@@ -35,9 +35,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response|ResourceCollection
      */
     public function index(Request $request)
-    {        
+    {
         return response()->json(User::all());
-    }          
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -47,7 +47,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $companies = Company::where('name', 'Birutekno Inc.')->first();
+        $companies = Company::where('name', 'Adma Digital Solusi')->first();
 
         $request->validate([
             'email' => 'required|string|email',
@@ -64,7 +64,6 @@ class UsersController extends Controller
             'username' => $request->username,
             'handphone' => $request->handphone,
             'alamat' => $request->alamat,
-            'company_id' => $companies->id,
             'position_id' => $request->position_id,
             'password' => Hash::make($request->password),
         ]);
@@ -101,7 +100,7 @@ class UsersController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'fullname' => 'required|string|min:4',            
+            'fullname' => 'required|string|min:4',
             'handphone' => 'required|max:20',
             'alamat' => 'required|string',
         ]);
@@ -114,7 +113,8 @@ class UsersController extends Controller
         // }
 
         $currentUser = Auth::user();
-        if (!$currentUser->hasRole('admin')
+        if (
+            !$currentUser->hasRole('admin')
             && $currentUser->id !== $user->id
             && !$currentUser->hasPermission(\App\Laravue\Acl::PERMISSION_USER_MANAGE)
         ) {
@@ -133,7 +133,7 @@ class UsersController extends Controller
         $user->alamat = $request->alamat;
         $user->company_id = $request->company_id;
         $user->position_id = $request->position_id;
-        
+
         $role = Role::findByName($request->roles);
         $user->syncRoles($role);
         $user->save();
@@ -160,12 +160,12 @@ class UsersController extends Controller
 
         $permissionIds = $request->get('permissions', []);
         $rolePermissionIds = array_map(
-            function($permission) {
+            function ($permission) {
                 return $permission['id'];
             },
 
             $user->getPermissionsViaRoles()->toArray()
-        );        
+        );
 
         $newPermissionIds = array_diff($permissionIds, $rolePermissionIds);
         $permissions = Permission::allowed()->whereIn('id', $newPermissionIds)->get();
@@ -175,7 +175,7 @@ class UsersController extends Controller
         $user->syncRoles($role);
 
         return new UserResource($user);
-    }    
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -218,17 +218,19 @@ class UsersController extends Controller
         }
     }
 
-    public function me(Request $request) {
+    public function me(Request $request)
+    {
         $user = $request->user();
         $user->company;
         $user->leadProjects;
         return response()->json(new UserResource($user));
     }
 
-    public function changePassword(ChangePasswordRequest $request) {
+    public function changePassword(ChangePasswordRequest $request)
+    {
         $user = User::findOrFail(Auth::user()->id);
 
-        if(!Hash::check($request->oldPassword, $user->password)) {
+        if (!Hash::check($request->oldPassword, $user->password)) {
             return response()->json([
                 'message' => 'New password cannot be the same with old password'
             ]);
@@ -236,7 +238,7 @@ class UsersController extends Controller
 
         $user->password = Hash::make($request->newPassword);
 
-        if(!$user->save()) {
+        if (!$user->save()) {
             return response()->json([
                 'message' => 'Opps something went wrong'
             ], 500);
@@ -247,16 +249,17 @@ class UsersController extends Controller
         ]);
     }
 
-    public function changeDetails(ChangeDetailsRequest $request) {
+    public function changeDetails(ChangeDetailsRequest $request)
+    {
         $user = User::findOrFail(Auth::user()->id);
         $user->fullname = $request->fullname;
         $user->handphone = $request->handphone;
         $user->save();
-        
+
         return response()->json([
             'message' => 'Update profile succesfully'
         ]);
-    }   
+    }
 
     /**
      * @param bool $isNew
@@ -266,7 +269,7 @@ class UsersController extends Controller
     {
         return [
             'fullname' => 'required',
-            'email' => $isNew ? 'required|email|unique:users' : 'required|email',         
+            'email' => $isNew ? 'required|email|unique:users' : 'required|email',
             'username' => 'required|unique:users,username',
         ];
     }

@@ -47,6 +47,12 @@ Route::namespace('Api')->group(function () {
         // Permission
         Route::apiResource('permissions', 'PermissionController')->middleware('role:admin');
 
+        Route::group(['prefix' => 'users', 'middleware' => 'role:admin'], function () {
+            Route::get('/', 'UsersController@index');
+            Route::post('/', 'UsersController@store');
+            Route::put('/{id}', 'UsersController@update');
+        });
+
         Route::group(['prefix' => 'client', 'middleware' => 'role:admin'], function () {
             Route::get('/', 'ClientController@index');
             Route::post('/', 'ClientController@store');
