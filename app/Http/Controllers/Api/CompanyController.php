@@ -16,16 +16,16 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {                                
-        $companies = Company::where('name', '!=', 'Birutekno Inc.')
+    {
+        $companies = Company::where('name', '!=', 'Adma Digital Solusi')
             ->orderBy('created_at', 'DESC')
-            ->when($request->q, function($companies) {
-               $companies = $companies->where('name', 'ILIKE', '%' . request()->q . '%');
+            ->when($request->q, function ($companies) {
+                $companies = $companies->where('name', 'ILIKE', '%' . request()->q . '%');
             })->get();
 
         return response()->json([
             'data' => $companies
-        ]); 
+        ]);
     }
 
     /**
@@ -60,7 +60,7 @@ class CompanyController extends Controller
     public function show($id)
     {
         $company = Company::where('id', $id)->first();
-        if(!$company) {
+        if (!$company) {
             return response()->json([
                 'message' => 'Company not found'
             ], 404);
@@ -83,9 +83,9 @@ class CompanyController extends Controller
         $request->validate([
             'name' => 'required|string|min:3|unique:categories,name'
         ]);
-        
+
         $company = Company::where('id', $id)->first();
-        if(!$company) {
+        if (!$company) {
             return response()->json([
                 'message' => 'Company not found'
             ], 404);
@@ -108,7 +108,7 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $company = Company::where('id', $id)->first();
-        if(!$company) {
+        if (!$company) {
             return response()->json([
                 'message' => 'Company not found'
             ], 404);
